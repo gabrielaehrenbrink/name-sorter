@@ -1,16 +1,16 @@
 def sort_names(names):
-    # Split each name into parts and sort by last name, then by given names
-    # Added validation for the number of given names
+    # Splits each name into parts and sorts first by last name, then by up to 3 given names
     valid_names = []
     for name in names:
         parts = name.split(" ")
-        if 1 < len(parts) <= 4:  # Ensure there's at least 1 given name and at most 3 given names plus a surname
+        if 1 < len(parts) <= 4:  #  For names to be valid they must have at least a surname, 1 given name and at most 3 given names plus their surname
             valid_names.append(name)
         else:
             print(f"Error: Invalid name on the list - '{name}'. A name must have 1 to 3 given names and a surname.")
     return sorted(valid_names, key=lambda name: (name.split(" ")[-1], name.split(" ")))
 
 def read_names_from_file(filename):
+    # Reads the names from the file and returns them as a list
     try:
         with open(filename, 'r') as file:
             return file.read().strip().split('\n')
@@ -19,6 +19,7 @@ def read_names_from_file(filename):
         return []
 
 def write_names_to_file(filename, names):
+    # Writes the sorted names to the file
     try:
         with open(filename, 'w') as file:
             for name in names:

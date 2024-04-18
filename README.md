@@ -10,3 +10,9 @@ To use the script, you need to pass the path to the file containing the unsorted
 python name_sorter.py <path-to-unsorted-names-list.txt>
 ```
 
+## Testing
+The script includes unit tests to ensure that it works as expected. You can run the tests using the following command:
+```
+python -m unittest test_name_sorter.py
+```
+
