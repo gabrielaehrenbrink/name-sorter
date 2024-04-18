@@ -24,7 +24,7 @@ class TestNameSorter(unittest.TestCase):
 
     def test_sort_multiple_given_names(self):
         """
-        Test that names are being sorted by last name and given names.
+        Test that names are being sorted by last name and multiple given names.
         """
         names = ["Jane Mary Smith", "Ada Amy Abigail Smith", "John Paul Smith", "John Smith"]
         sorted_names = sort_names(names)
@@ -49,6 +49,15 @@ class TestNameSorter(unittest.TestCase):
         expected = []
         result = sort_names(names)
         self.assertEqual(result, expected, "A name must have no more than 3 given names and a surname.")
+
+    def test_sort_repeated_names(self):
+        """
+        Test that names are being sorted by last name and given names when there is a repeated name
+        """
+        names = ["Jane Doe", "Ada Lovelace", "Zoe Smith", "John Smith", "John Smith"]
+        expected = ["Jane Doe", "Ada Lovelace", "John Smith", "John Smith", "Zoe Smith"]
+        result = sort_names(names)
+        self.assertEqual(result, expected, "Should sort names by last name and given names even with repeated names")
 
     def test_read_names_from_file(self):
         with tempfile.NamedTemporaryFile(delete=False, mode='w') as tmp:
