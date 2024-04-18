@@ -7,11 +7,30 @@ import tempfile
 class TestNameSorter(unittest.TestCase):
 
     def test_sort_names(self):
+        """
+        Test that names are being sorted by last name.
+        """
         names = ["Jane Doe", "Ada Lovelace", "Zoe Smith"]
         sorted_names = sort_names(names)
-        self.assertEqual(sorted_names, ["Jane Doe", "Ada Lovelace", "Zoe Smith"], "Should sort names by last name and given names")
+        self.assertEqual(sorted_names, ["Jane Doe", "Ada Lovelace", "Zoe Smith"], "Should sort names by last name")
 
-    def test_only_surname(self):
+    def test_sort_given_names(self):
+        """
+        Test that names are being sorted by last name and given names.
+        """
+        names = ["Jane Doe", "Ada Lovelace", "Zoe Smith", "John Smith"]
+        sorted_names = sort_names(names)
+        self.assertEqual(sorted_names, ["Jane Doe", "Ada Lovelace", "John Smith", "Zoe Smith"], "Should sort names by last name and given names")
+
+    def test_sort_multiple_given_names(self):
+        """
+        Test that names are being sorted by last name and given names.
+        """
+        names = ["Jane Mary Smith", "Ada Amy Abigail Smith", "John Paul Smith", "John Smith"]
+        sorted_names = sort_names(names)
+        self.assertEqual(sorted_names, ["Ada Amy Abigail Smith", "Jane Mary Smith", "John Paul Smith", "John Smith"], "Should sort names by last name and given names")
+
+    def test_surname_only(self):
         """
         Test that a name with only a surname and no given names is considered invalid
         and not included in the sorted list.
