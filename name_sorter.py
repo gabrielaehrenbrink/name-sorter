@@ -15,7 +15,7 @@ def read_names_from_file(filename):
         with open(filename, 'r') as file:
             return file.read().strip().split('\n')
     except FileNotFoundError:
-        print(f"Error: The file {filename} was not found.")
+        print(f"Error: An error occurred while accessing the file {filename}: {e}")
         return []
 
 def write_names_to_file(filename, names):
