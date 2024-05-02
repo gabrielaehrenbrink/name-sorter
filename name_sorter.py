@@ -1,5 +1,4 @@
 class FileReader:
-    # Handles reading names from a file
     def read_from_file(self, filename):
         try:
             with open(filename, 'r') as file:
@@ -9,7 +8,6 @@ class FileReader:
             return []
 
 class FileWriter:
-    # Handles writing names to a file
     def write_to_file(self, filename, names):
         try:
             with open(filename, 'w') as file:
@@ -19,7 +17,7 @@ class FileWriter:
             print(f"Error writing to file {filename}: {e}")
 
 class NameValidator:
-    # Validates that each name has between 2 and 4 parts
+    # Validates that each name has at least 1 surname and up to 3 given names
     def validate(self, names):
         valid_names = []
         for name in names:
@@ -36,7 +34,7 @@ class NameSorter:
         return sorted(names, key=lambda name: (name.split(" ")[-1], name.split(" ")))
 
 def process_names(input_file, file_reader, name_validator, name_sorter, file_writer):
-    # Main function to process names through the steps of reading, validating, sorting, and writing
+    # Process names through the steps of reading, validating, sorting, and writing
     names = file_reader.read_from_file(input_file)
     if names:
         valid_names = name_validator.validate(names)
@@ -49,7 +47,6 @@ def process_names(input_file, file_reader, name_validator, name_sorter, file_wri
 
 
 if __name__ == "__main__":
-    # Entry point of the script, handling command line arguments
     import sys
     if len(sys.argv) > 1:
         process_names(sys.argv[1], FileReader(), NameValidator(), NameSorter(), FileWriter())
